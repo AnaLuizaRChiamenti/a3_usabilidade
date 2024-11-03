@@ -47,6 +47,10 @@
 
                 const token = authResponse.data.token;
 
+
+                console.log(token);
+
+
                 const citiesResponse = await axios.get(`${apiUrl}/cidades`, {
                     headers: {
                         "x-access-token": token

@@ -7,7 +7,7 @@
     <title>Lista de Cidades</title>
     <style>
         table {
-            width: 50%;
+            width: 100%;
             border-collapse: collapse;
         }
 
@@ -16,6 +16,10 @@
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
@@ -29,53 +33,13 @@
                 <th>Nome</th>
             </tr>
         </thead>
-        <tbody />
+        <tbody>
+            <!-- As cidades serão inseridas aqui -->
+        </tbody>
     </table>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        const apiUrl = "http://137.184.108.252:5000/api";
-        const email = "analuizarodrigueschiamenti@gmail.com";
-        const password = "0P9j3nJXoK8A";
-
-        async function main() {
-            try {
-                const authResponse = await axios.post(`${apiUrl}/login`, {
-                    email,
-                    password
-                });
-
-                const token = authResponse.data.token;
-
-
-                console.log(token);
-
-
-                const citiesResponse = await axios.get(`${apiUrl}/cidades`, {
-                    headers: {
-                        "x-access-token": token
-                    }
-                });
-
-                const cities = citiesResponse.data;
-                const citiesTableBody = document.getElementById("citiesTable").getElementsByTagName("tbody")[0];
-
-                cities.forEach(city => {
-                    const row = citiesTableBody.insertRow();
-                    const idCell = row.insertCell(0);
-                    const nameCell = row.insertCell(1);
-                    const stateCell = row.insertCell(2);
-
-                    idCell.textContent = city.id;
-                    nameCell.textContent = city.nome;
-                });
-            } catch (error) {
-                console.error("Erro ao buscar cidades:", error);
-            }
-        }
-
-        main();
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
